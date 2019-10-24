@@ -17,9 +17,27 @@
        if ( letters[i].match(/^[a-z]$/) ) {
          list.className = `hide letter ${letters[i]}`;
        } else if ( letters[i] === " " ) {
-         list.className = "hide space";
+         list.className = "space";
        }
        ulDiv.appendChild(list);
      }
+   }
+
+   checkLetter(letter) {
+     if ( this.phrase.includes(letter) ) {
+       return true;
+     } else {
+       return false;
+     }
+   }
+
+   showMatchedLetter(letter) {
+
+     const lettersList = document.getElementsByClassName(`${letter}`);
+     for ( let i = 0; i < lettersList.length; i++ ) {
+       lettersList[i].classList.remove('hide');
+       lettersList[i].classList.add('show');
+     }
+
    }
  }
