@@ -41,25 +41,30 @@
    }
 
    removeLife() {
-     this.missed += 1;
-     const livesList = document.getElementsByClassName('tries');
+     const livesList = document.querySelectorAll('.tries img');
      for ( let i = 0; i < livesList.length; i++ ) {
-       if ( livesList[i].getAttribute("src") === "images/liveHeart.png" ) {
+       if ( livesList[i].getAttribute("src") === "images/liveHeart.png") {
          livesList[i].removeAttribute("src");
          livesList[i].setAttribute("src", "images/lostHeart.png");
+         break;
        }
      }
-     if( this.missed === 5 ) {
-       this.gameOver();
+     this.missed += 1;
+     if (this.missed === 5) {
+       this.gameOver(false);
      }
    }
 
    gameOver(gameWon) {
      document.getElementById('overlay').style.display = "block";
-     if ( this.checkForWin === true ) {
-       document.getElementById('game-over-message').textContent('You Won');
-     } else {
-       document.getElementById('game-over-message').textContent('You Lost');
+     if ( gameWon === true ) {
+       document.getElementById('overlay').classList.remove("lose");
+       document.getElementById('overlay').classList.add("win");
+       document.getElementById('game-over-message').textContent = "Great Job!";
+     } else if ( gameWon === false ) {
+       document.getElementById('overlay').classList.remove("win");
+       document.getElementById('overlay').classList.add("lose");
+       document.getElementById('game-over-message').textContent = "Sorry, better luck next time!";
      }
    }
  }
