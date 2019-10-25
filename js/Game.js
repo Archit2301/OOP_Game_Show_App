@@ -67,4 +67,20 @@
        document.getElementById('game-over-message').textContent = "Sorry, better luck next time!";
      }
    }
+
+   handelInteraction(button) {
+     console.log(button);
+     button.disabled = true;
+     if (!this.activePhrase.phrase.includes(button.textContent)) {
+       button.classList.add('wrong');
+       this.removeLife();
+     } else if (this.activePhrase.phrase.includes(button.textContent)) {
+       button.classList.add('chosen');
+       const phrase = new Phrase(this.activePhrase.phrase);
+       phrase.showMatchedLetter(button.textContent);
+       if( this.checkForWin() ) {
+         this.gameOver(true);
+       }
+     }
+   }
  }
