@@ -61,10 +61,12 @@
        document.getElementById('overlay').classList.remove("lose");
        document.getElementById('overlay').classList.add("win");
        document.getElementById('game-over-message').textContent = "Great Job!";
+       this.resetGame();
      } else if ( gameWon === false ) {
        document.getElementById('overlay').classList.remove("win");
        document.getElementById('overlay').classList.add("lose");
        document.getElementById('game-over-message').textContent = "Sorry, better luck next time!";
+       this.resetGame();
      }
    }
 
@@ -80,6 +82,25 @@
        phrase.showMatchedLetter(button.textContent);
        if( this.checkForWin() ) {
          this.gameOver(true);
+       }
+     }
+   }
+
+   resetGame() {
+     console.log('Game reset!');
+     const ulDiv = document.querySelector('#phrase ul');
+     while( ulDiv.firstChild ) {
+       ulDiv.firstChild.remove();
+       const keys = document.getElementsByClassName('key');
+       for( let i = 0; i < keys.length; i++ ) {
+         keys[i].disabled = false;
+         keys[i].classList.remove('wrong');
+         keys[i].classList.remove('chosen');
+         keys[i].classList.add('key');
+      }
+       const images = document.querySelectorAll('.tries img')
+       for( let i = 0; i < images.length; i++ ) {
+         images[i].setAttribute("src", "images/liveHeart.png");
        }
      }
    }
