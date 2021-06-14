@@ -1,5 +1,4 @@
 # OOP_Game_Show_App
- My fourth techdegree project
 
 --Description
 
@@ -19,4 +18,3 @@ A number of methods and properties have been used to run this program.
 
 
 ***********************************************************************
-///////////////////////////////////////////////////////////////////////
